@@ -1,0 +1,58 @@
+.experiment { --content-exit: 0; --darkness: 0; --interior-scale: 1; --facade: 1; --information: 1; background: #101112; color: #f2e9d9; }
+.navigation { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 12px 24px; background: #101112; font-size: 14px; }
+.navigation a { display: inline-flex; align-items: center; min-height: 44px; }
+.experiment :focus-visible { outline: 3px solid #e3bd69; outline-offset: 4px; }
+.track { position: relative; }
+.scene { position: sticky; top: 0; height: 100svh; margin-bottom: -100svh; overflow: clip; isolation: isolate; }
+.interior, .darkening, .facade { position: absolute; inset: 0; }
+.interior { background: url('/images/enviroments/studio-credibility-end.png') center / cover; transform: scale(var(--interior-scale)); }
+.darkening { background: #070809; opacity: var(--darkness); }
+.facade { background: #101112; opacity: var(--facade); }
+.facadeImage { object-fit: cover; object-position: center; }
+.sceneNote { position: absolute; top: 88px; right: 24px; max-width: calc(100% - 48px); padding: 8px 12px; background: #101112ed; font-size: 12px; color: #eee3cf; }
+.experiment[data-image='error'] .facadeImage { visibility: hidden; }
+.reading { position: relative; opacity: calc(1 - var(--content-exit)); }
+.reading > section { background: transparent; min-height: 100svh; overflow: visible; padding-block: 88px 56px; }
+.reading > section::before { background: linear-gradient(#10111245, #10111280); }
+.reading > section > div:first-child { display: none; }
+.reading > section > div:last-child > div { animation: none; transform: none; }
+.passage { position: relative; }
+.information { position: relative; min-height: 100svh; pointer-events: none; }
+.information:not([inert]) { pointer-events: auto; }
+.informationContent { padding: max(52svh, 320px) clamp(20px, 5vw, 96px) 48px; }
+.informationPanel { width: min(100%, 400px); margin-right: auto; padding: clamp(24px, 3vw, 36px); background: #101112f5; }
+.informationPanel h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.12; font-weight: 400; letter-spacing: -.025em; }
+.introduction { margin-top: 16px; color: #eee3cf; font-size: 16px; }
+.details { margin-top: 28px; display: grid; gap: 22px; }
+.details dt { color: #e3bd69; font-size: 14px; }
+.details dd { margin-top: 4px; color: #eee3cf; font-size: 15px; max-width: 38ch; }
+.note { margin-top: 24px; font-size: 12px; line-height: 1.6; color: #d2c2a7; }
+.status { position: fixed; inset: auto 20px 20px; z-index: 11; margin: 0; }
+.status:not(:empty) { background: #101112; padding: 16px; max-width: 65ch; font-size: 14px; }
+/* The passage starts only when the last viewport of reading is on screen. */
+.experiment[data-enhanced='true'] .readingReserve::after { content: ''; display: block; height: var(--reading-reserve); }
+.experiment[data-enhanced='true'] .reading { position: sticky; top: 0; }
+.experiment[data-enhanced='true'] .passage { margin-top: -100svh; }
+.experiment[data-enhanced='true'] .passage::after { content: ''; display: block; height: var(--travel); }
+.experiment[data-enhanced='true'] .information { position: sticky; top: 0; }
+.experiment[data-enhanced='true'] .informationContent { opacity: var(--information); }
+.experiment:not([data-enhanced='true']) .scene { position: relative; height: 0; margin: 0; }
+.experiment:not([data-enhanced='true']) .reading { background: url('/images/enviroments/studio-credibility-end.png') center / cover; }
+.experiment:not([data-enhanced='true']) .information { background: url('/images/enviroments/studio-facade-dusk.png') center top / 100% auto no-repeat #101112; }
+.experiment:not([data-enhanced='true'])[data-image='error'] .information { background-image: none; }
+@media (max-width: 759px) {
+  .navigation { padding-inline: 20px; font-size: 12px; }
+  .reading > section { padding-block: 88px 32px; }
+  .facadeImage { inset: 8svh 0 auto !important; height: auto !important; aspect-ratio: 1672 / 941; object-fit: contain; }
+  .sceneNote { top: calc(8svh + 56.28vw); right: 20px; left: 20px; max-width: none; padding: 6px 0; font-size: 11px; }
+  .informationContent { padding: calc(56.28vw + 8svh + 32px) 20px 32px; }
+  .informationPanel { margin-inline: auto; }
+  .experiment:not([data-enhanced='true']) .information { background-position: center 8svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .experiment .passage { margin-top: 0; }
+  .experiment .passage::after { display: none; }
+  .experiment .information { position: relative; }
+  .reading, .informationContent { opacity: 1 !important; }
+  .interior { transform: none; }
+}

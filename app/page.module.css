@@ -1,0 +1,5 @@
+.footer {
+  position: relative;
+  z-index: 3;
+  background: var(--paper);
+}

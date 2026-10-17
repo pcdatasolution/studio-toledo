@@ -6,10 +6,8 @@ export function SiteHeader() {
           Auto Detailer <strong>Toledo</strong>
         </a>
         <nav aria-label="Seções da página inicial">
-          <a href="#ppf">PPF</a>
-          <a href="#trabalhos">Trabalhos</a>
-          <a href="#familia">Nossa história</a>
-          <a href="#contato" className="nav-contact">Contato</a>
+          <a href="/servicos">Serviços</a>
+          <a href="#credibilidade">Credibilidade</a>
         </nav>
       </div>
     </header>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Service } from "@/content/services";
+import { approvedMedia } from "@/content/types";
 import styles from "@/app/servicos/services.module.css";
 
 function ServicePanel({ service, selected, select }: { service: Service; selected: boolean; select: () => void }) {
@@ -11,7 +12,8 @@ function ServicePanel({ service, selected, select }: { service: Service; selecte
   const [imageFailed, setImageFailed] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const approvedVideo = service.video?.kind === "real" && service.video.usageApproval === "approved" && !videoFailed;
+  const image = approvedMedia(service.image);
+  const approvedVideo = approvedMedia(service.video)?.kind === "real" && !videoFailed;
   const stop = () => { video.current?.pause(); setPlaying(false); };
   const play = () => {
     if (!approvedVideo || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -22,7 +24,7 @@ function ServicePanel({ service, selected, select }: { service: Service; selecte
     <li className={styles.panel} data-featured={service.featured} data-selected={selected}>
       <button type="button" className={styles.panelControl} aria-label={`Ver prévia de ${service.name}`} aria-expanded={selected} aria-controls="service-preview" onClick={select} onFocus={select} onBlur={stop} onPointerEnter={(e) => { if (e.pointerType === "mouse") play(); }} onPointerLeave={stop}>
         <span className={styles.media}>
-          {service.image && !imageFailed ? <Image src={service.image.src} alt={service.image.alt} width={service.image.width} height={service.image.height} sizes="(max-width: 759px) 80vw, 400px" onError={() => setImageFailed(true)} /> : <span className={styles.emptyMedia}>Imagem indisponível</span>}
+          {image && !imageFailed ? <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 759px) 80vw, 400px" onError={() => setImageFailed(true)} /> : <span className={styles.emptyMedia}>{image ? "Imagem indisponível" : "Fotografia em preparação"}</span>}
           {approvedVideo && <video ref={video} className={styles.video} data-playing={playing} src={service.video!.src} muted playsInline preload="none" aria-hidden="true" onError={() => { setVideoFailed(true); setPlaying(false); }} onEnded={stop} />}
         </span>
         <span className={styles.panelCaption}>{service.name}<span>{selected ? "Prévia selecionada" : "Ver prévia"}</span></span>

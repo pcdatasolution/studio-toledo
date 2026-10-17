@@ -60,7 +60,7 @@ Catálogo corresponde à lista aprovada; cada item tem destino pronto e conteúd
 
 **APROVADO PELO IDEALIZADOR:** galeria panorâmica cinematográfica, painéis grandes integrados visualmente ao ambiente, PPF em destaque, catálogo expansível, prévia antes do detalhe, suporte futuro a vídeos reais autorizados e acesso por toque. Não é aprovação comercial do proprietário.
 
-**IMPLEMENTADO:** cenário conceitual E03 reaproveitado; painel PPF E05 identificado como conceito; lista em fluxo horizontal preparada para mais serviços; prévia em HTML por clique, foco ou toque; página individual indisponível; retorno à Home; ausência de mídia e catálogo vazio tratados. Apenas um item demonstrativo, sem novas ofertas.
+**IMPLEMENTADO:** cenário conceitual E03 reaproveitado; lista em fluxo horizontal preparada para mais serviços; prévia em HTML por clique, foco ou toque; página individual indisponível; retorno à Home; ausência de mídia e catálogo vazio tratados. Apenas um item demonstrativo, sem novas ofertas. Em 14/10/2026, a imagem E05 (`public/images/services/ppf.png`) foi retirada do modelo do PPF, mas permanece armazenada; o estado de mídia ausente mostra “Fotografia em preparação”, preservando identificação, seleção e prévia textual. Nenhuma outra fotografia foi cadastrada.
 
 Modelo em `content/services.ts`: nome, slug, descrição curta, imagem opcional com origem conceitual/real, vídeo opcional real com status de autorização, aprovação comercial, prioridade visual e disponibilidade do destino. Componentes em `components/sections/service-gallery.tsx`; estilos isolados em CSS Module, sem alteração da Home.
 

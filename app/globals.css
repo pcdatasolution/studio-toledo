@@ -24,8 +24,8 @@ h1, h2, h3, p, figure, dl, dd { margin: 0; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
 .container { width: min(100% - 40px, 1200px); margin-inline: auto; }
-.skip-link { position: fixed; left: 16px; top: 16px; z-index: 10; padding: 12px 20px; background: var(--accent); transform: translateY(-180%); }
-.skip-link:focus { transform: translateY(0); }
+.skip-link { position: fixed; left: 16px; top: 16px; z-index: 10; max-width: calc(100vw - 32px); padding: 12px 20px; background: var(--accent); color: var(--ink); opacity: 0; pointer-events: none; }
+.skip-link:focus-visible { opacity: 1; pointer-events: auto; }
 .prototype-notice { background: #e8ece7; font-size: 12px; line-height: 1.5; }
 .notice-inner { display: flex; flex-wrap: wrap; gap: 4px 20px; padding-block: 10px; }
 .notice-inner strong { font-weight: 600; }
@@ -129,12 +129,20 @@ dd { color: var(--muted); margin-top: 6px; font-size: 15px; max-width: 52ch; }
 .studio-stage { width: min(100%, 1200px); display: grid; justify-items: center; margin-top: 12px; }
 .studio-panels { width: 96%; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 26px; list-style: none; padding: 0; margin: 0; perspective: 1100px; }
 .studio-panel { position: relative; min-width: 0; aspect-ratio: 2/3; transform: skewX(-7deg); z-index: 1; transition: transform 350ms cubic-bezier(.16,1,.3,1), filter 350ms, box-shadow 350ms; }
-.studio-panel--ppf { transform: none; }
 .studio-panel-control { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; }
 .studio-panel-control img { width: 100%; height: 100%; object-fit: contain; }
-.studio-panel[data-selected="true"] { transform: translate3d(0,-12px,30px) scale(1.04); z-index: 2; filter: brightness(1.12); box-shadow: 0 20px 30px #0008; }
+.studio-ppf-placeholder { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; height: 100%; padding: 30px 22px 90px; color: #eed5a0; text-align: left; }
+.studio-ppf-placeholder > * { transform: skewX(7deg); transform-origin: left top; }
+.studio-ppf-placeholder strong { font-size: clamp(28px, 3.5vw, 44px); font-weight: 500; line-height: 1.1; }
+.studio-ppf-placeholder > span { max-width: 16ch; font-size: clamp(12px, 1.2vw, 15px); line-height: 1.4; color: #e0d1b6; }
+.studio-panel[data-selected="true"] { transform: skewX(-7deg) translate3d(0,-12px,30px) scale(1.04); z-index: 2; filter: brightness(1.12); box-shadow: 0 20px 30px #0008; }
 .studio-panel-control:focus-visible { outline: 3px solid #ecc476; outline-offset: 5px; }
-.studio-panel--pending, .studio-panel--catalog { background: linear-gradient(155deg, #403729ed, #181715e8 72%); border: 1px solid #dcaf5b; display: flex; flex-direction: column; align-items: center; padding: 30px 22px 90px; text-align: left; }
+.studio-panel--ppf, .studio-panel--pending, .studio-panel--catalog { background: linear-gradient(155deg, #403729ed, #181715e8 72%); border: 1px solid #dcaf5b; }
+.studio-panel--pending, .studio-panel--catalog { display: flex; flex-direction: column; align-items: center; padding: 30px 22px 90px; text-align: left; }
+.studio-catalog-link { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: inherit; text-decoration: none; }
+.studio-catalog-link > span { transform: skewX(7deg); color: #eed5a0; }
+.studio-panel--catalog:focus-within { outline: 3px solid #ecc476; outline-offset: 5px; transform: skewX(-7deg) translate3d(0,-10px,24px) scale(1.025); z-index: 2; }
+.studio-catalog-link:focus-visible { outline: none; }
 .studio-panel > span, .studio-panel > small { transform: skewX(7deg); }
 .studio-panel > span { font-size: clamp(18px,2.3vw,30px); line-height: 1.15; color: #eed5a0; }
 .studio-panel > small { font-size: 11px; margin-top: 16px; color: #e0d1b6; }
@@ -156,9 +164,8 @@ dd { color: var(--muted); margin-top: 6px; font-size: 15px; max-width: 52ch; }
   .studio-stage { margin-top: 16px; }
   .studio-panels { width: 100%; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 190px; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding: 14px 12px 24px; scrollbar-width: thin; scrollbar-color: #dcaf5b #181715; }
   .studio-panel { aspect-ratio: 2/3; scroll-snap-align: start; }
-  .studio-panel--ppf { aspect-ratio: 2/3; }
   .studio-panel-control img { object-fit: contain; object-position: top; }
-  .studio-panel--pending, .studio-panel--catalog { padding: 22px 18px 40px; }
+  .studio-panel--pending, .studio-panel--catalog, .studio-ppf-placeholder { padding: 22px 18px 40px; }
   .studio-panel > span { font-size: 22px; overflow-wrap: normal; }
   .studio-panel > small { font-size: 10px; }
   .studio-vehicle { width: 100%; margin-top: -90px; }
@@ -166,10 +173,10 @@ dd { color: var(--muted); margin-top: 6px; font-size: 15px; max-width: 52ch; }
 }
 @media (prefers-reduced-motion: reduce) {
   .studio-panel { transition: none; }
-  .studio-panel[data-selected="true"] { transform: none; }
+  .studio-panel[data-selected="true"], .studio-panel--catalog:focus-within { transform: skewX(-7deg); }
 }
 .studio-panel:not(.studio-panel--ppf):focus { outline: 3px solid #ecc476; outline-offset: 5px; transform: skewX(-7deg) translate3d(0,-10px,24px) scale(1.025); z-index: 2; }
 @media (hover: hover) { .studio-panel:not(.studio-panel--ppf):hover { transform: skewX(-7deg) translate3d(0,-10px,24px) scale(1.025); filter: brightness(1.12); z-index: 2; } }
 @media (prefers-reduced-motion: reduce) { .studio-panel:not(.studio-panel--ppf):focus, .studio-panel:not(.studio-panel--ppf):hover { transform: skewX(-7deg); } }
-.studio-panel--pending > span::after, .studio-panel--catalog > span::after { content: ""; display: block; width: 44px; height: 1px; background: #dcaf5b; margin-top: 22px; }
-.studio-panel--catalog > span { text-transform: uppercase; font-size: clamp(18px,2vw,26px); line-height: 1.25; }
+.studio-panel--pending > span::after, .studio-catalog-link > span::after { content: ""; display: block; width: 44px; height: 1px; background: #dcaf5b; margin-top: 22px; }
+.studio-catalog-link > span { text-transform: uppercase; font-size: clamp(18px,2vw,26px); line-height: 1.25; }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ServiceGallery } from "@/components/sections/service-gallery";
-import { services } from "@/content/services";
+import { getServices } from "@/content/services";
 import styles from "./services.module.css";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function ServicesPage() {
         <nav aria-label="Navegação da galeria">
           <Link href="/">Início</Link>
           <Link href="/servicos" aria-current="page">Serviços</Link>
-          <Link href="/#contato">Contato na Home</Link>
+          <Link href="/#credibilidade">Credibilidade na Home</Link>
         </nav>
       </header>
       <main id="services-main" tabIndex={-1}>
@@ -29,10 +29,10 @@ export default function ServicesPage() {
         </div>
         <section className={styles.environment} aria-label="Galeria de serviços">
           <Image className={styles.scenery} src="/images/enviroments/studio-entrada-v2.png" alt="" fill sizes="100vw" preload />
-          <ServiceGallery services={services} />
+          <ServiceGallery services={getServices("prototype")} />
         </section>
         <div className={styles.notes}>
-          <p>Estudo preliminar. Cenário e imagem de PPF conceituais; não são registros das instalações ou dos serviços realizados pelo Toledo.</p>
+          <p>Estudo preliminar. O cenário é conceitual e não representa as instalações do Toledo. A fotografia de PPF está em preparação.</p>
           <p>Catálogo e informações comerciais aguardam confirmação do proprietário.</p>
           <Link href="/">Voltar à Home</Link>
         </div>

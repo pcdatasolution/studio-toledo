@@ -1,12 +1,20 @@
-import { CinematicHero } from "@/components/sections/cinematic-hero";
+import { StudioScrollExperience } from "@/components/sections/studio-scroll-experience";
+import { FacadeTransition } from "@/components/sections/facade-transition";
 import { PendingContact } from "@/components/ui/pending-contact";
 import { PhotoPlaceholder } from "@/components/ui/photo-placeholder";
 
 export function HomeSections() {
   return (
-    <>
-      <CinematicHero />
+    <StudioScrollExperience context="home">
+      <FacadeTransition context="home" />
+    </StudioScrollExperience>
+  );
+}
 
+/** Historical composition retained for reference; not rendered by the Home. */
+export function LegacyHomeSections() {
+  return (
+    <>
       <section className="section ppf-section" id="ppf" aria-labelledby="ppf-title">
         <div className="container">
           <div className="section-intro">
