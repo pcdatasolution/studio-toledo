@@ -120,3 +120,9 @@ Estas decisões dependem de briefing validado, pesquisa e aprovação. Serão de
 4. Só então produzir a direção criativa em `DESIGN.md` e a arquitetura/copy/SEO em `CONTENT.md`.
 
 **Regra:** não transformar HIPÓTESE em fato nem publicar afirmações comerciais não aprovadas.
+
+## Dados de contato recebidos — 17/10/2026
+
+Fornecidos pelo solicitante para implementar o painel da Home: nome Studio Toledo; Av. Santos Dumont, 6369, Papicu, Fortaleza – CE; segunda a sexta 8h às 18h; sábado 8h às 14h; telefone (85) 98816-6289; WhatsApp internacional 5585988166289. Domingo não informado: não declarar fechado. Esta atualização complementa o levantamento histórico acima, sem afirmar aprovação comercial do proprietário ou autorização de publicação.
+
+O painel usa estes dados, não os textos ou contatos incorporados à fachada conceitual. Google Maps usa busca pelo endereço, sem coordenadas ou identificador de estabelecimento. WhatsApp abre conversa sem mensagem predefinida ou envio automático. Permanecem pendentes o domingo, demais dados comerciais e a homologação final/publicação.

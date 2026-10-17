@@ -27,6 +27,26 @@
 .details dt { color: #e3bd69; font-size: 14px; }
 .details dd { margin-top: 4px; color: #eee3cf; font-size: 15px; max-width: 38ch; }
 .note { margin-top: 24px; font-size: 12px; line-height: 1.6; color: #d2c2a7; }
+.contactPanel { background: #101112; padding: 32px; border-top: 2px solid #ed9b58; }
+.contactEyebrow { color: #ed9b58; font-size: 11px; letter-spacing: .12em; font-weight: 600; margin-bottom: 16px; }
+.contactPanel h2 { font-size: clamp(28px, 3vw, 36px); }
+.contactName { margin-top: 12px; font-size: 14px; color: #d2c2a7; }
+.contactDetails { display: grid; gap: 24px; margin-top: 28px; }
+.contactRow { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.6; }
+.contactRow > svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: #ed9b58; }
+.contactRow address { font-style: normal; }
+.contactHours { display: grid; gap: 12px; }
+.contactHours dt { font-size: 13px; color: #d2c2a7; }
+.contactHours dd { margin: 0; font-size: 15px; color: #f2e9d9; }
+.contactPhone { text-decoration: underline; text-underline-offset: 4px; }
+.contactPhone:hover { color: #ed9b58; }
+.contactActions { display: grid; gap: 12px; margin-top: 28px; }
+.contactActions a { min-height: 48px; padding: 12px 16px; display: flex; align-items: center; justify-content: center; gap: 12px; text-align: center; font-size: 14px; font-weight: 600; line-height: 1.5; text-decoration: none; }
+.contactPrimary { background: #ed9b58; color: #101112; }
+.contactPrimary:hover { background: #f5b67e; }
+.contactSecondary { border: 1px solid #8c7660; color: #f2e9d9; }
+.contactSecondary:hover { background: #29241e; border-color: #ed9b58; }
+.contactSecondary svg { width: 18px; height: 18px; }
 .status { position: fixed; inset: auto 20px 20px; z-index: 11; margin: 0; }
 .status:not(:empty) { background: #101112; padding: 16px; max-width: 65ch; font-size: 14px; }
 /* The passage starts only when the last viewport of reading is on screen. */
@@ -40,13 +60,18 @@
 .experiment:not([data-enhanced='true']) .reading { background: url('/images/enviroments/studio-credibility-end.png') center / cover; }
 .experiment:not([data-enhanced='true']) .information { background: url('/images/enviroments/studio-facade-dusk.png') center top / 100% auto no-repeat #101112; }
 .experiment:not([data-enhanced='true'])[data-image='error'] .information { background-image: none; }
+@media (min-width: 760px) {
+  .contactPanel { margin-left: calc(24px - clamp(20px, 5vw, 96px)); }
+}
 @media (max-width: 759px) {
   .navigation { padding-inline: 20px; font-size: 12px; }
   .reading > section { padding-block: 88px 32px; }
   .facadeImage { inset: 8svh 0 auto !important; height: auto !important; aspect-ratio: 1672 / 941; object-fit: contain; }
   .sceneNote { top: calc(8svh + 56.28vw); right: 20px; left: 20px; max-width: none; padding: 6px 0; font-size: 11px; }
   .informationContent { padding: calc(56.28vw + 8svh + 32px) 20px 32px; }
+  .informationContent:has(> .contactPanel) { background: linear-gradient(to bottom, transparent calc(56.28vw + 8svh + 32px), #101112 0); }
   .informationPanel { margin-inline: auto; }
+  .contactPanel { padding: 28px 24px; }
   .experiment:not([data-enhanced='true']) .information { background-position: center 8svh; }
 }
 @media (prefers-reduced-motion: reduce) {

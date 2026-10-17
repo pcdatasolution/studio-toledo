@@ -147,3 +147,9 @@ detalhe deve exigir aprovação, conteúdo útil e mídia autorizada separadamen
 Os cadastros de trabalhos, história e contato só aparecerão quando tiverem
 consumidores implementados. Não é necessário alterar esses dados ou inventar
 conteúdo para tornar visível uma página que ainda não existe.
+
+## Painel de contato da Home — 17/10/2026
+
+`content/business.ts` agora alimenta o painel Informações da Loja da Home com os dados fornecidos pelo solicitante nesta data, registrados em `docs/BRIEF.md`: nome, endereço/localidade, telefone/WhatsApp e horários separados por dias. Isso atualiza a afirmação histórica de que esse arquivo não era consumido. O status continua `preliminary`; os dados recebidos não autorizam publicação ou a aprovação de mídia. Domingo permanece omitido por ausência de informação.
+
+As ações externas de WhatsApp e Google Maps foram explicitamente solicitadas para o protótipo local. O mapa é uma busca textual; não incorpora mapa, coordenadas ou ficha comercial. O telefone usa `tel:`. Nenhuma ação envia mensagem automaticamente. A rota experimental da fachada mantém o painel de placeholders e não consome os novos dados na interface. Fachada, serviços e rodapé preservados.
